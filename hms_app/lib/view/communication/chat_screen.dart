@@ -159,3 +159,99 @@ class _Bubble extends StatelessWidget {
     );
   }
 }
+
+class NotificationScreen extends StatelessWidget {
+  const NotificationScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final notifications = [
+      {
+        'title': 'Appointment Confirmed',
+        'body':
+            'Your appointment with Dr. Perera at 10:30 AM tomorrow is confirmed.',
+        'time': '2 hrs ago',
+        'icon': Icons.check_circle,
+        'color': AppTheme.success
+      },
+      {
+        'title': 'Prescription Ready',
+        'body': 'Dr. Nadun Sampath has issued a new prescription for you.',
+        'time': '5 hrs ago',
+        'icon': Icons.description,
+        'color': AppTheme.primaryTeal
+      },
+      {
+        'title': 'Appointment Reminder',
+        'body':
+            'You have an appointment tomorrow at 11:00 AM with Dr. Silva (ENT).',
+        'time': '1 day ago',
+        'icon': Icons.notifications,
+        'color': AppTheme.warning
+      },
+      {
+        'title': 'Lab Results Available',
+        'body':
+            'Your blood test results are now available. Check your reports.',
+        'time': '2 days ago',
+        'icon': Icons.science,
+        'color': AppTheme.info
+      },
+      {
+        'title': 'Payment Received',
+        'body': 'Payment of LKR 4,300 received for Bill BILL-2026-001.',
+        'time': '5 days ago',
+        'icon': Icons.payment,
+        'color': AppTheme.accentGreen
+      },
+    ];
+
+    return Scaffold(
+      appBar: AppBar(
+          leading: const AppBackButton(),
+          title: const Text('Notifications'),
+          actions: [
+            TextButton(
+                onPressed: () {},
+                child: const Text('Mark all read',
+                    style: TextStyle(color: Colors.white))),
+          ]),
+      body: ListView.builder(
+        padding: const EdgeInsets.all(16),
+        itemCount: notifications.length,
+        itemBuilder: (_, i) {
+          final n = notifications[i];
+          return Card(
+            margin: const EdgeInsets.only(bottom: 10),
+            child: ListTile(
+              leading: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: (n['color'] as Color).withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(n['icon'] as IconData, color: n['color'] as Color),
+              ),
+              title: Text(n['title'] as String,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w600, fontSize: 14)),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(n['body'] as String,
+                      style: const TextStyle(
+                          fontSize: 12, color: AppTheme.textMedium)),
+                  const SizedBox(height: 2),
+                  Text(n['time'] as String,
+                      style: const TextStyle(
+                          fontSize: 11, color: AppTheme.textLight)),
+                ],
+              ),
+              isThreeLine: true,
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
