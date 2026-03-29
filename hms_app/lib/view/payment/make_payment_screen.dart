@@ -14,3 +14,4 @@ class MakePaymentScreen extends StatefulWidget {
 class _MakePaymentScreenState extends State<MakePaymentScreen> {
   String _method = 'Credit Card';
   bool _paid = false;
+
