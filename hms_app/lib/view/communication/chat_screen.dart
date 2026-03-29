@@ -120,3 +120,42 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 }
 
+class _ChatMsg {
+  final String text;
+  final bool isMe;
+  final DateTime time;
+  _ChatMsg(this.text, this.isMe, this.time);
+}
+
+class _Bubble extends StatelessWidget {
+  final _ChatMsg msg;
+  const _Bubble({required this.msg});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: msg.isMe ? Alignment.centerRight : Alignment.centerLeft,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        constraints:
+            BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.75),
+        decoration: BoxDecoration(
+          color: msg.isMe ? AppTheme.primaryTeal : Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: const Radius.circular(16),
+            topRight: const Radius.circular(16),
+            bottomLeft: Radius.circular(msg.isMe ? 16 : 4),
+            bottomRight: Radius.circular(msg.isMe ? 4 : 16),
+          ),
+          boxShadow: const [BoxShadow(color: Color(0x14000000), blurRadius: 4)],
+        ),
+        child: Text(
+          msg.text,
+          style: TextStyle(
+              color: msg.isMe ? Colors.white : AppTheme.textDark, fontSize: 14),
+        ),
+      ),
+    );
+  }
+}
