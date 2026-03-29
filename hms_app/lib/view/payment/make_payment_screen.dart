@@ -46,4 +46,50 @@ class _MakePaymentScreenState extends State<MakePaymentScreen> {
       );
     }
 
-
+    return Scaffold(
+      appBar: AppBar(
+          leading: const AppBackButton(), title: const Text('Make Payment')),
+      body: ListView(
+        padding: const EdgeInsets.all(20),
+        children: [
+          // Bill summary
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+                gradient: AppTheme.cardGradient,
+                borderRadius: BorderRadius.circular(16)),
+            child: const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Bill Summary',
+                    style: TextStyle(color: Colors.white70, fontSize: 12)),
+                SizedBox(height: 4),
+                Text('BILL-2026-002',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18)),
+                SizedBox(height: 12),
+                Text('Consultation Fee: LKR 1,500',
+                    style: TextStyle(color: Colors.white70)),
+                Text('Skin Biopsy: LKR 2,500',
+                    style: TextStyle(color: Colors.white70)),
+                Divider(color: Colors.white30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Total',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16)),
+                    Text('LKR 4,000',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18)),
+                  ],
+                ),
+              ],
+            ),
+          ),
