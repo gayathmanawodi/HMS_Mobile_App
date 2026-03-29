@@ -13,4 +13,22 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final _ctrl = TextEditingController();
+  final List<_ChatMsg> _messages = [
+    _ChatMsg('Hello! How can I help you today?', false,
+        DateTime.now().subtract(const Duration(minutes: 5))),
+    _ChatMsg('I have been having chest pains since morning.', true,
+        DateTime.now().subtract(const Duration(minutes: 4))),
+    _ChatMsg(
+        'I see. Is the pain sharp or dull? Does it radiate to your arm or jaw?',
+        false,
+        DateTime.now().subtract(const Duration(minutes: 3))),
+  ];
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
  
