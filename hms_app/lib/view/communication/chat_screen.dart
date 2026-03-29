@@ -31,4 +31,21 @@ class _ChatScreenState extends State<ChatScreen> {
     super.dispose();
   }
 
- 
+  void _send() {
+    if (_ctrl.text.trim().isEmpty) return;
+    setState(() {
+      _messages.add(_ChatMsg(_ctrl.text.trim(), true, DateTime.now()));
+      _ctrl.clear();
+    });
+    // Simulate doctor reply
+    Future.delayed(const Duration(seconds: 1), () {
+      if (mounted) {
+        setState(() {
+          _messages.add(_ChatMsg(
+              'Thank you for letting me know. I recommend you come in for a check-up as soon as possible.',
+              false,
+              DateTime.now()));
+        });
+      }
+    });
+  }
